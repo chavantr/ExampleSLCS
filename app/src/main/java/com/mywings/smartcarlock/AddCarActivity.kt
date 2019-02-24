@@ -3,6 +3,7 @@ package com.mywings.smartcarlock
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
+import com.mywings.smartcarlock.model.UserInfoHolder
 import com.mywings.smartcarlock.process.AddCarAsync
 import com.mywings.smartcarlock.process.HttpConnectionUtil
 import com.mywings.smartcarlock.process.OnAddCarListener
@@ -46,6 +47,7 @@ class AddCarActivity : AppCompatActivity(), OnAddCarListener {
         param.put("CHNumber", txtCH.text)
         param.put("Model", txtModel.text)
         param.put("BName", txtbName.text)
+        param.put("VId", UserInfoHolder.getInstance().user.id)
         request.put("request", param)
         addCarAsync.setOnAddCarListener(this, request)
     }
