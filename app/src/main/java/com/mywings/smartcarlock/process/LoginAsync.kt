@@ -3,7 +3,6 @@ package com.mywings.smartcarlock.process
 import android.os.AsyncTask
 import com.mywings.smartcarlock.model.User
 import org.json.JSONObject
-import java.net.CacheRequest
 
 class LoginAsync : AsyncTask<JSONObject, Void, User?>() {
 
@@ -13,7 +12,8 @@ class LoginAsync : AsyncTask<JSONObject, Void, User?>() {
 
     override fun doInBackground(vararg param: JSONObject?): User? {
 
-        val response = httpConnectionUtil.requestPost("", param[0])
+        val response = httpConnectionUtil.requestPost(Constants.URL + Constants.LOGIN, param[0])
+
         val jUser = JSONObject(response)
         var user = User()
         user.id = jUser.getInt("Id")
