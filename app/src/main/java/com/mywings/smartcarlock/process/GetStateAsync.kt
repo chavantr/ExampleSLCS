@@ -13,7 +13,9 @@ class GetStateAsync : AsyncTask<String, Void, State>() {
 
     override fun doInBackground(vararg param: String?): State {
 
-        val response = httpConnectionUtil.requestGet(param[0])
+        val response = httpConnectionUtil.requestGet(
+            Constants.URL + Constants.GET_STATE + "?id=${param[0]}"
+        )
 
         val jState = JSONObject(response)
 
@@ -31,6 +33,11 @@ class GetStateAsync : AsyncTask<String, Void, State>() {
 
         return state
 
+    }
+
+    override fun onPostExecute(result: State?) {
+        super.onPostExecute(result)
+        onGetStateListener.onGetStateSuccess(result)
     }
 
     fun setOnStateListener(onGetStateListener: OnGetStateListener, request: String) {

@@ -13,7 +13,7 @@ class GetCarAsync : AsyncTask<String, Void, List<Car>?>() {
 
     override fun doInBackground(vararg param: String?): List<Car>? {
 
-        val response = httpConnectionUtil.requestGet(param[0])
+        val response = httpConnectionUtil.requestGet(Constants.URL + Constants.GET_VEHICLE + "?id=${param[0]}")
 
         val jCar = JSONArray(response)
 

@@ -57,7 +57,7 @@ class RegistrationActivity : AppCompatActivity(), OnRegistrationListener {
 
     override fun onRegistrationComplete(result: String?) {
         progressDialogUtil.hide()
-        if (result.isNullOrEmpty()) {
+        if (!result.isNullOrEmpty()) {
             val snackbar = Snackbar.make(btnSignUp, "Registration completed.", Snackbar.LENGTH_INDEFINITE)
             snackbar.setAction("Ok") {
                 finish()

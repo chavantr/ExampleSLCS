@@ -9,7 +9,7 @@ class AddCarAsync : AsyncTask<JSONObject, Void, String?>() {
     private lateinit var onAddCarListener: OnAddCarListener
 
     override fun doInBackground(vararg param: JSONObject?): String? {
-        return httpConnectionUtil.requestPost("", param[0])
+        return httpConnectionUtil.requestPost(Constants.URL + Constants.ADD_CAR, param[0])
     }
 
     override fun onPostExecute(result: String?) {

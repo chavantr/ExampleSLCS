@@ -63,15 +63,15 @@ class AddCarActivity : AppCompatActivity(), OnAddCarListener {
     }
 
     override fun onAddCarSuccess(inserted: String?) {
-
-        if (inserted.isNullOrEmpty()) {
+        progressDialogUtil.hide()
+        if (!inserted.isNullOrEmpty()) {
             val snackbar = Snackbar.make(btnSave, "Vehicle added.", Snackbar.LENGTH_INDEFINITE)
             snackbar.setAction("Ok") {
                 finish()
             }
             snackbar.show()
         } else {
-            val snackbar = Snackbar.make(btnSave, "Vehicle added.", Snackbar.LENGTH_INDEFINITE)
+            val snackbar = Snackbar.make(btnSave, "An error has occurred", Snackbar.LENGTH_INDEFINITE)
             snackbar.setAction("Ok") {
 
             }

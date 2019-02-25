@@ -12,7 +12,9 @@ import com.mywings.smartcarlock.joint.JointAdapter
 import com.mywings.smartcarlock.listener.OnCarSelectedListener
 import com.mywings.smartcarlock.model.Car
 import com.mywings.smartcarlock.model.UserInfoHolder
+import com.mywings.smartcarlock.process.GetCarAsync
 import com.mywings.smartcarlock.process.OnGetCarListener
+import com.mywings.smartcarlock.process.ProgressDialogUtil
 import kotlinx.android.synthetic.main.activity_dashboard.*
 import kotlinx.android.synthetic.main.app_bar_dashboard.*
 import kotlinx.android.synthetic.main.content_dashboard.*
@@ -21,12 +23,15 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
     OnCarSelectedListener {
 
 
+    private lateinit var progressDialogUtil: ProgressDialogUtil
     private lateinit var jointAdapter: JointAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dashboard)
         setSupportActionBar(toolbar)
+
+        progressDialogUtil = ProgressDialogUtil(this)
 
         lstCar.layoutManager = LinearLayoutManager(this)
 
@@ -42,6 +47,8 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
         toggle.syncState()
 
         nav_view.setNavigationItemSelectedListener(this)
+
+        init()
     }
 
     override fun onBackPressed() {
@@ -70,8 +77,14 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
     }
 
 
-    override fun onCarSuccess(result: List<Car>?) {
+    private fun init() {
+        progressDialogUtil.show()
+        val getCarAsync = GetCarAsync()
+        getCarAsync.setOnGetCarListener(this, UserInfoHolder.getInstance().user.id.toString())
+    }
 
+    override fun onCarSuccess(result: List<Car>?) {
+        progressDialogUtil.hide()
         if (null != result) {
             jointAdapter = JointAdapter(result)
             jointAdapter.setOnCarSelectedListener(this)

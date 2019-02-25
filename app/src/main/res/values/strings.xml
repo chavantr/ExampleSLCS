@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SmartCarLock</string>
+    <string name="app_name">Smart Car Lock</string>
     <string name="title_activity_dashboard">Dashboard</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
