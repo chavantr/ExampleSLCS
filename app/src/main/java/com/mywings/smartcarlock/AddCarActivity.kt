@@ -15,7 +15,6 @@ class AddCarActivity : AppCompatActivity(), OnAddCarListener {
 
     private lateinit var progressDialogUtil: ProgressDialogUtil
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_car)
@@ -54,10 +53,9 @@ class AddCarActivity : AppCompatActivity(), OnAddCarListener {
 
     private fun validate(): Boolean {
 
-        if (txtCH.text.isNullOrEmpty() || txtLP.text.isNullOrEmpty() || txtModel.text.isNullOrEmpty() || txtbName.text.isNullOrEmpty()) {
+        if (txtCH.text.isNullOrEmpty() || txtCH.text.toString().length < 16 || txtLP.text.isNullOrEmpty() || txtModel.text.isNullOrEmpty() || txtbName.text.isNullOrEmpty()) {
             return false
         }
-
 
         return true
     }
