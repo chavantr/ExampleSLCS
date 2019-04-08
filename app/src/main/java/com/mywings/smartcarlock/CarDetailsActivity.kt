@@ -31,7 +31,7 @@ class CarDetailsActivity : AppCompatActivity(), OnGetStateListener, OnUpdateStat
                 state = checked
             }
 
-            Toast.makeText(this@CarDetailsActivity, "Waiting for sensor", Toast.LENGTH_LONG).show()
+            initUpdate()
 
         }
 

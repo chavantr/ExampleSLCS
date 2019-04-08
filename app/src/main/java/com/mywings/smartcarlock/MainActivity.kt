@@ -1,8 +1,8 @@
 package com.mywings.smartcarlock
 
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
 import com.mywings.smartcarlock.model.User
 import com.mywings.smartcarlock.model.UserInfoHolder
@@ -21,7 +21,11 @@ class MainActivity : AppCompatActivity(), OnLoginListener {
         setContentView(R.layout.activity_main)
         progressDialogUtil = ProgressDialogUtil(this)
         btnSignIn.setOnClickListener {
-            init()
+            if (txtUserName.text!!.isNotEmpty() && txtPassword.text!!.isNotEmpty()) {
+                init()
+            } else {
+                Toast.makeText(this, "Enter username and password", Toast.LENGTH_LONG).show()
+            }
         }
         btnSignUp.setOnClickListener {
             val intent = Intent(this@MainActivity, RegistrationActivity::class.java)
