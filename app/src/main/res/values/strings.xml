@@ -22,4 +22,6 @@
     <string name="enter_chesis_number">Enter chesis number</string>
     <string name="save">Save</string>
     <string name="car_lock">Car Lock</string>
+    <string name="enter_otp">Enter otp</string>
+    <string name="view_location">View Location</string>
 </resources>

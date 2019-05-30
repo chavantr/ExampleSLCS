@@ -80,7 +80,7 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
     private fun init() {
         progressDialogUtil.show()
         val getCarAsync = GetCarAsync()
-        getCarAsync.setOnGetCarListener(this, UserInfoHolder.getInstance().user.id.toString())
+        getCarAsync.setOnGetCarListener(this, "1")
     }
 
     override fun onCarSuccess(result: List<Car>?) {

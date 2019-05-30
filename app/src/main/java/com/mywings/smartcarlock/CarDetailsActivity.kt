@@ -8,6 +8,11 @@ import com.mywings.smartcarlock.model.UserInfoHolder
 import com.mywings.smartcarlock.process.*
 import kotlinx.android.synthetic.main.activity_car_details.*
 import org.json.JSONObject
+import android.support.v4.content.ContextCompat.startActivity
+import android.content.Intent
+import android.net.Uri
+import java.util.*
+
 
 class CarDetailsActivity : AppCompatActivity(), OnGetStateListener, OnUpdateStateListener {
 
@@ -15,6 +20,9 @@ class CarDetailsActivity : AppCompatActivity(), OnGetStateListener, OnUpdateStat
     private lateinit var progressDialogUtil: ProgressDialogUtil
 
     private var id: Int = 0
+
+    private var lat: String = ""
+    private var lng: String = ""
 
 
     private var state = false
@@ -32,6 +40,15 @@ class CarDetailsActivity : AppCompatActivity(), OnGetStateListener, OnUpdateStat
             }
 
             initUpdate()
+
+        }
+
+        btnViewLocation.setOnClickListener {
+
+            //val uri = String.format(Locale.ENGLISH, "geo:%f,%f", lat, lng)
+            val uri = "geo:$lat,$lng"
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(uri))
+            startActivity(intent)
 
         }
 
@@ -61,8 +78,11 @@ class CarDetailsActivity : AppCompatActivity(), OnGetStateListener, OnUpdateStat
         progressDialogUtil.hide()
         if (null != result) {
             id = result.id
+            lat = result.lat
+            lng = result.lng
             lblLP.text = "Vehicle : ${UserInfoHolder.getInstance().selectedCar.lp}"
             tglLock.isChecked = result.state.equals("true", true)
+
         }
     }
 

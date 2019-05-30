@@ -2,7 +2,7 @@ package com.mywings.smartcarlock.process
 
 object Constants {
 
-    const val URL = "http://mobile.punetraining.com/MyRestService.svc/"
+    const val URL = "http://globemindstechnologies.com/MyRestService.svc/"
     const val LOGIN = "SCLS_Login"
     const val REGISTRATION = "SCLS_Registration"
     const val GET_STATE = "GetState"
