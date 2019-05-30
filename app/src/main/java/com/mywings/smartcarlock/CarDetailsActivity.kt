@@ -56,9 +56,12 @@ class CarDetailsActivity : AppCompatActivity(), OnGetStateListener, OnUpdateStat
     }
 
     private fun init() {
-        progressDialogUtil.show()
-        val getStateAsync = GetStateAsync()
-        getStateAsync.setOnStateListener(this, UserInfoHolder.getInstance().selectedCar.id.toString())
+        try {
+            progressDialogUtil.show()
+            val getStateAsync = GetStateAsync()
+            getStateAsync.setOnStateListener(this, UserInfoHolder.getInstance().selectedCar.id.toString())
+        } catch (e: Exception) {
+        }
     }
 
 
@@ -89,7 +92,6 @@ class CarDetailsActivity : AppCompatActivity(), OnGetStateListener, OnUpdateStat
     override fun onUpdateStateSuccess(result: String?) {
         progressDialogUtil.hide()
         if (!result.isNullOrBlank()) {
-
             Toast.makeText(this@CarDetailsActivity, "Updated", Toast.LENGTH_LONG).show()
         }
     }

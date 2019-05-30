@@ -14,7 +14,6 @@ import com.mywings.smartcarlock.process.ProgressDialogUtil
 import com.mywings.smartcarlock.process.RegistrationAsync
 import kotlinx.android.synthetic.main.activity_registration.*
 import org.json.JSONObject
-import kotlin.random.Random
 
 class RegistrationActivity : AppCompatActivity(), OnRegistrationListener, OnSendOptionListener {
 
@@ -126,10 +125,15 @@ class RegistrationActivity : AppCompatActivity(), OnRegistrationListener, OnSend
 
     override fun onRegistrationComplete(result: String?) {
         progressDialogUtil.hide()
-        if (!result.isNullOrEmpty()) {
+        if (!result.isNullOrEmpty() && result.equals("1", true)) {
             val snackbar = Snackbar.make(btnSignUp, "Registration completed.", Snackbar.LENGTH_INDEFINITE)
             snackbar.setAction("Ok") {
                 finish()
+            }
+            snackbar.show()
+        } else if (!result.isNullOrEmpty() && result.equals("3", true)) {
+            val snackbar = Snackbar.make(btnSignUp, "Already exists", Snackbar.LENGTH_INDEFINITE)
+            snackbar.setAction("Ok") {
             }
             snackbar.show()
         } else {

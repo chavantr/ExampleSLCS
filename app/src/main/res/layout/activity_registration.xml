@@ -66,6 +66,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/enter_phone_number"
+                android:maxLength="10"
                 android:inputType="number"/>
 
 
@@ -107,6 +108,7 @@
                                                          android:layout_height="wrap_content"
                                                          android:id="@+id/txtPhoneNumber0"
                                                          android:inputType="number"
+                                                         android:maxLength="10"
                                                          android:hint="Enter phone number(optional)"/>
 
 
@@ -127,6 +129,7 @@
                                                          android:layout_height="wrap_content"
                                                          android:id="@+id/txtPhoneNumber00"
                                                          android:inputType="number"
+                                                         android:maxLength="10"
                                                          android:hint="Enter phone number(optional)"/>
 
 
