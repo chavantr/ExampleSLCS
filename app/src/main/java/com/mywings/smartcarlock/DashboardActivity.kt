@@ -66,9 +66,11 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
             R.id.nav_camera -> {
 
             }
-            R.id.nav_gallery -> {
-
+            R.id.nav_logout -> {
+                val intent = Intent(this@DashboardActivity, MainActivity::class.java)
+                startActivity(intent)
             }
+
 
         }
 

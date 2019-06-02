@@ -44,4 +44,24 @@
             android:layout_marginEnd="16dp"/>
 
 
+    <TextView android:layout_width="match_parent" app:layout_constraintTop_toBottomOf="@id/btnViewLocation"
+              android:layout_height="wrap_content" android:text="@string/enter_license_plate"
+              android:id="@+id/lblLicensePlate" android:layout_marginTop="24dp" android:padding="12dp"
+              app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="16dp"
+              app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="16dp"/>
+
+
+    <TextView android:layout_width="match_parent" app:layout_constraintTop_toBottomOf="@id/lblLicensePlate"
+              android:layout_height="wrap_content" android:text="@string/enter_license_plate"
+              android:id="@+id/lblName" android:layout_marginTop="24dp" android:padding="12dp"
+              app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="16dp"
+              app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="16dp"/>
+
+    <TextView android:layout_width="match_parent" app:layout_constraintTop_toBottomOf="@id/lblName"
+              android:layout_height="wrap_content" android:text="@string/enter_license_plate"
+              android:id="@+id/lblCN" android:layout_marginTop="24dp" android:padding="12dp"
+              app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="16dp"
+              app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="16dp"/>
+
+
 </android.support.constraint.ConstraintLayout>

@@ -1,6 +1,13 @@
 package com.mywings.smartcarlock
 
+import android.app.Notification
+import android.app.NotificationManager
+import android.app.PendingIntent
+import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.support.v4.app.NotificationCompat
 import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
 import com.mywings.smartcarlock.model.State
@@ -8,9 +15,6 @@ import com.mywings.smartcarlock.model.UserInfoHolder
 import com.mywings.smartcarlock.process.*
 import kotlinx.android.synthetic.main.activity_car_details.*
 import org.json.JSONObject
-import android.support.v4.content.ContextCompat.startActivity
-import android.content.Intent
-import android.net.Uri
 import java.util.*
 
 
@@ -27,6 +31,8 @@ class CarDetailsActivity : AppCompatActivity(), OnGetStateListener, OnUpdateStat
 
     private var state = false
 
+    private var timer = Timer()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_car_details)
@@ -40,7 +46,7 @@ class CarDetailsActivity : AppCompatActivity(), OnGetStateListener, OnUpdateStat
             }
 
             initUpdate()
-
+            timer.schedule(NotifyUser(), 10 * 1000, 50 * 5000)
         }
 
         btnViewLocation.setOnClickListener {
@@ -53,6 +59,15 @@ class CarDetailsActivity : AppCompatActivity(), OnGetStateListener, OnUpdateStat
         }
 
         init()
+        lblLicensePlate.text = "License plate : " + UserInfoHolder.getInstance().selectedCar.lp
+        lblCN.text = "Chassis number : " + UserInfoHolder.getInstance().selectedCar.chNumber
+        lblName.text = "Brand name : " + UserInfoHolder.getInstance().selectedCar.bName
+    }
+
+    inner class NotifyUser : TimerTask() {
+        override fun run() {
+            showNotification()
+        }
     }
 
     private fun init() {
@@ -94,6 +109,29 @@ class CarDetailsActivity : AppCompatActivity(), OnGetStateListener, OnUpdateStat
         if (!result.isNullOrBlank()) {
             Toast.makeText(this@CarDetailsActivity, "Updated", Toast.LENGTH_LONG).show()
         }
+    }
+
+
+    private fun showNotification() {
+        val strState = if (state) "Lock" else "Unlock"
+
+        val intent = Intent(this, DashboardActivity::class.java)
+        val contentIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+
+        val b = NotificationCompat.Builder(this)
+
+        b.setAutoCancel(true)
+            .setDefaults(Notification.DEFAULT_ALL)
+            .setWhen(System.currentTimeMillis())
+            .setSmallIcon(R.drawable.notification_icon_background)
+            .setTicker("Car Notification")
+            .setContentTitle("Your car is $strState")
+            .setContentText("")
+            .setDefaults(Notification.DEFAULT_LIGHTS or Notification.DEFAULT_SOUND)
+            .setContentIntent(contentIntent)
+            .setContentInfo("Info")
+        val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        notificationManager.notify(1, b.build())
     }
 
 

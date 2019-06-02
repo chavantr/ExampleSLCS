@@ -51,6 +51,7 @@ class MainActivity : AppCompatActivity(), OnLoginListener {
             UserInfoHolder.getInstance().user = user
             val intent = Intent(this@MainActivity, DashboardActivity::class.java)
             startActivity(intent)
+            finish()
         } else {
             Toast.makeText(this, "An error has occurred", Toast.LENGTH_LONG).show()
         }
