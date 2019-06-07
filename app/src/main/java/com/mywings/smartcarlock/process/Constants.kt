@@ -9,5 +9,6 @@ object Constants {
     const val SET_STATE = "UpdateState"
     const val GET_VEHICLE = "GetCar"
     const val ADD_CAR = "AddCar"
+    const val DELETE_CAR = "DeleteCar"
 
 }

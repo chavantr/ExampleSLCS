@@ -39,12 +39,18 @@ class JointAdapter(lst: List<Car>) : RecyclerView.Adapter<JointAdapter.JointAdap
 
         }
 
+        viewHolder.imgDelete.setOnClickListener {
+
+        }
+
     }
 
 
     inner class JointAdapterViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         val lblName = itemView.lblName
+        val imgDelete = itemView.imgDelete
+
 
     }
 
